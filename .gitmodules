@@ -1,0 +1,3 @@
+[submodule "juriscraper"]
+	path = juriscraper
+	url = https://github.com/shilad/juriscraper.git
