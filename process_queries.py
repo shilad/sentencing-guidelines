@@ -1,5 +1,7 @@
 import json
+import random
 import time
+from random import shuffle
 
 import pandas as pd
 
@@ -65,7 +67,11 @@ def main(in_path, out_path):
             js_clients[court_id] = PossibleCaseNumberApi(court_id, session)
         return js_clients[court_id]
 
-    for row in df_in.to_dict(orient='records'):
+    # Shuffle the ordering to mix up the sites and avoid hammering any one of them.
+    records = df_in.to_dict(orient='records')
+    random.Random(10).shuffle(records)
+
+    for row in records:
         result = dict(row)
         result['row_num'] = result['Unnamed: 0']    # index has a weird name
         del result['Unnamed: 0']

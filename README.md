@@ -1,7 +1,8 @@
 # Sentencing-guidelines
 Retrieves data about sentencing guidelines from the pacer repo.
 
-# Instructions
+# Development instructions
+
 
 1. Clone this repo:
 
@@ -29,7 +30,7 @@ Retrieves data about sentencing guidelines from the pacer repo.
     # create a directory for logs (this can be skipped, and no logs will be created)
     sudo mkdir -p /var/log/juriscraper
 
-    pip install -f requirements.txt
+    pip install -r requirements.txt
     ```
 
 3. IF YOU WANT TO RECREATE `case_queries.csv`: Create the queries (expects `mergedData.csv`) in main directory.
@@ -43,3 +44,31 @@ Retrieves data about sentencing guidelines from the pacer repo.
     ```
    python ./process_queries.py
     ```
+
+# AWS instructions (for Amazon AMI)
+
+
+set -e
+set -x
+
+sudo yum update -y
+sudo yum install -y screen libxml2-devel \
+     libxslt-devel libyaml-devel git python-pip gcc \
+     python-lxml
+
+wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
+tar -x -f phantomjs-1.9.7-linux-x86_64.tar.bz2
+sudo mv phantomjs-1.9.7-linux-x86_64/bin/phantomjs /usr/local/bin
+rm -r phantomjs-1.9.7*  # Cleanup
+
+sudo mkdir -p /var/log/juriscraper
+sudo chmod 777 /var/log/juriscraper/
+
+
+git clone https://github.com/shilad/sentencing-guidelines.git
+cd sentencing-guidelines/
+
+pip install -r requirements.txt
+
+screen
+
