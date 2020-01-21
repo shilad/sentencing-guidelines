@@ -71,7 +71,7 @@ def main(in_path, out_path):
     records = df_in.to_dict(orient='records')
     random.Random(10).shuffle(records)
 
-    for row in records:
+    for i, row in enumerate(records):
         result = dict(row)
         result['row_num'] = result['Unnamed: 0']    # index has a weird name
         del result['Unnamed: 0']
@@ -79,8 +79,8 @@ def main(in_path, out_path):
         if result['row_num'] in processed_rows:
             continue
 
-        if result['row_num'] % 10 == 0:
-            print('processing row %d' % result['row_num'])
+        if i % 10 == 0:
+            print('processing row %d' % i)
 
         try:
             js = get_juris_scraper(row['dist'])
