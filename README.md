@@ -55,7 +55,7 @@ set -x
 sudo yum update -y
 sudo yum install -y screen libxml2-devel \
      libxslt-devel libyaml-devel git python-pip gcc \
-     python-lxml
+     python-lxml gcc-c++
 
 wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-linux-x86_64.tar.bz2
 tar -x -f phantomjs-1.9.7-linux-x86_64.tar.bz2
