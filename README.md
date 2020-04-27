@@ -48,6 +48,7 @@ Retrieves data about sentencing guidelines from the pacer repo.
 # AWS instructions (for Amazon AMI)
 
 
+```bash
 set -e
 set -x
 
@@ -68,7 +69,8 @@ sudo chmod 777 /var/log/juriscraper/
 git clone https://github.com/shilad/sentencing-guidelines.git
 cd sentencing-guidelines/
 
-pip install -r requirements.txt
+sudo pip install -r requirements.txt
 
 screen
+```
 
